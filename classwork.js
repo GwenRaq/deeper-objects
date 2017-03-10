@@ -38,19 +38,20 @@ var preview = {
 * 			string
 * Return 	isEnabled (string)
 */
-function returnEnabled(pre) {
-	// console.log(pre);
+function returnEnabled(pre){
+	console.log(pre);
 	var isEnabled = "";
 	for(var key in pre){
 		console.log(key);
 		console.log(pre[key]);
 	if (key === "enabled"){
-		console.log(data[key]);
-		isEnabled += data[key];
+		console.log(pre[key]);
+		isEnabled += pre[key];
 	}
-}
+  }
 console.log(typeof isEnabled);
 return isEnabled;
+console.log(preview);
 }
 /*
 * Function that changes the value from the key "enabled" to true, and returns 
@@ -58,14 +59,50 @@ return isEnabled;
 *
 * Return 	value from key enabled (boolean)
 */
-
+function makeItTrue(okay){
+	//Always Print parameter
+	console.log(okay.enabled);
+	//First Method: Access Directly
+	okay.enabled = true;
+	// Second Method: For in loop (object)
+	for (var key in okay){
+		console.log(okay[key]);
+		if (key === "enabled"){
+			okay[key] = true;
+		}
+	}
+	return okay.enabled
+}
+console.log(makeItTrue(preview));
 /*
 * Function that retrieves the urls only from the key "resolutions" 
 * , stores the values in an array called "urls", and returns the created array
 * 
 * Return 	urls (array)
 */
+function resoloot(me){
+	var urls = [];
 
+	var dataResolutions = data.images[0].resolutions;
+	for (var i = 0; i < dataResolutions.length; i++){
+		console.log(dataResolutions[i]);
+		for(var key in dataResolutions[i]){
+			console.log(key);
+			if(key === "url"){
+				urls.push(dataResolutions[i][key]);
+				console.log(urls);
+			}
+		}
+	}
+
+
+	for(var key in me.images[0].resolutions){
+		console.log(me.images[0].resolutions[key].url);
+		urls.push(me.images[0].resolutions[key].url);
+	}
+return urls;
+}
+console.log(resoloot(preview));
 /*
 * Function that retrieves the first nested key and value pairing
 * from the values of "images", stores them in a new object called 
